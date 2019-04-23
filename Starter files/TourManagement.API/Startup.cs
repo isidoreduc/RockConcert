@@ -26,7 +26,15 @@ namespace TourManagement.API
         {
             services.AddMvc(setupAction =>
             {
+                //
                 setupAction.ReturnHttpNotAcceptable = true;
+                // using a json output formatter to add vendor media types
+                var jsonOutputFormatter = setupAction.OutputFormatters.OfType<JsonOutputFormatter>().FirstOrDefault();
+                if(jsonOutputFormatter != null)
+                {
+                    jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tour+json");
+                    jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tourWithProfits+json");
+                }
             })
             .AddJsonOptions(options =>
             {
@@ -83,6 +91,10 @@ namespace TourManagement.API
             {
                 config.CreateMap<Entities.Tour, Dtos.Tour>()
                     .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+                // mapping for different media types (vendor media types)
+                config.CreateMap<Entities.Tour, Dtos.TourWithProfits>()
+                    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
                 config.CreateMap<Entities.Band, Dtos.Band>();
                 config.CreateMap<Entities.Manager, Dtos.Manager>();
                 config.CreateMap<Entities.Show, Dtos.Show>(); 

@@ -12,7 +12,7 @@ namespace TourManagement.API.Helpers
     {
         // a list of allowed media types
         private readonly string[] _mediaTypes;
-        // request header that contains a media typeto confront on the available list of allowed media types
+        // request header that contains a media type to confront on the available list of allowed media types
         private readonly string _requestHeaderToMatch;
 
         public RequestHeaderMatchesMediaTypeAttribute(string[] mediaTypes, string requestHeaderToMatch)
