@@ -47,16 +47,14 @@ namespace TourManagement.API.Controllers
 
         [HttpGet("{tourId}")]
         // tells the client it accepts only a specific media type
-        [RequestHeaderMatchesMediaType(
-            new[] { "application/vnd.isidore.tour+json" }, 
-            "Accept")]
+        [RequestHeaderMatchesMediaType("Accept",
+            new[] { "application/vnd.isidore.tour+json" })]
         public async Task<IActionResult> GetTour(Guid tourId) => await GetTourBase<Tour>(tourId);
 
 
         [HttpGet("{tourId}")]
-        [RequestHeaderMatchesMediaType(
-            new[] { "application/vnd.isidore.tourWithProfits+json" },
-            "Accept")]
+        [RequestHeaderMatchesMediaType("Accept",
+            new[] { "application/vnd.isidore.tourWithProfits+json" })]
         public async Task<IActionResult> GetTourWithProfits(Guid tourId) => await GetTourBase<TourWithProfits>(tourId);
 
 

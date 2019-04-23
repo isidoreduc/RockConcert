@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{17E6F259-1C4C-4F16-85FA-F53ADE9FF4EB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/RequestHeaderMatchesMediaTypeAttribute.cs">
     <Files>
-      <File FileName="Controllers/ToursController.cs" Line="1" Column="1" />
-      <File FileName="Helpers/RequestHeaderMatchesMediaTypeAttribute.cs" Line="42" Column="97" />
-      <File FileName="Startup.cs" Line="31" Column="39" />
+      <File FileName="Controllers/ToursController.cs" Line="58" Column="22" />
+      <File FileName="Helpers/RequestHeaderMatchesMediaTypeAttribute.cs" Line="15" Column="54" />
+      <File FileName="Startup.cs" Line="36" Column="110" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,10 +13,11 @@
               <Node name="Controllers" expanded="True" />
               <Node name="Dtos" expanded="True" />
               <Node name="Entities" expanded="True" />
-              <Node name="Helpers" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="RequestHeaderMatchesMediaTypeAttribute.cs" selected="True" />
+              </Node>
               <Node name="Migrations" expanded="True" />
               <Node name="Services" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

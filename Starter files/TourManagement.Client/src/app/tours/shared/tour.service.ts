@@ -7,6 +7,7 @@ import 'rxjs/add/operator/do';
 
 import { Tour } from './tour.model';
 import { BaseService } from '../../shared/base.service';
+import { TourWithProfits } from './tour-with-profits.model';
 
 @Injectable()
 export class TourService extends BaseService {
@@ -20,5 +21,9 @@ export class TourService extends BaseService {
 
   getTour(tourId: string): Observable<Tour> {
     return this.http.get<Tour>(`${this.apiUrl}/tours/${tourId}`);
+  }
+
+  getTourWithProfits(tourId: string): Observable<TourWithProfits> {
+    return this.http.get<TourWithProfits>(`${this.apiUrl}/tours/${tourId}`);
   }
 }
