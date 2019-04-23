@@ -1,6 +1,7 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /.vs
 /Finished sample/Marvin.IDP/obj
+/Starter files/TourManagement.Client/node_modules
