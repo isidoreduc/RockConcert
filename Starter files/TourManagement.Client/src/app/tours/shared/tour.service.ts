@@ -10,16 +10,15 @@ import { BaseService } from '../../shared/base.service';
 
 @Injectable()
 export class TourService extends BaseService {
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-    constructor(private http: HttpClient) {           
-        super();      
-    }
+  getTours(): Observable<Tour[]> {
+    return this.http.get<Tour[]>(`${this.apiUrl}/tours`);
+  }
 
-    getTours(): Observable<Tour[]> {
-        return this.http.get<Tour[]>(`${this.apiUrl}/tours`);
-    }
-
-    getTour(tourId: string): Observable<Tour> {
-        return this.http.get<Tour>(`${this.apiUrl}/tours/${tourId}`);
-    }
+  getTour(tourId: string): Observable<Tour> {
+    return this.http.get<Tour>(`${this.apiUrl}/tours/${tourId}`);
+  }
 }

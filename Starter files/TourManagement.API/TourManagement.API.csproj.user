@@ -3,4 +3,9 @@
   <PropertyGroup>
     <WebStackScaffolding_DependencyDialogWidth>600</WebStackScaffolding_DependencyDialogWidth>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <LaunchUrl>api/</LaunchUrl>
+    <ApplicationURL>http://localhost:51113/</ApplicationURL>
+  </PropertyGroup>
 </Project>
