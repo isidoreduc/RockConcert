@@ -65,5 +65,51 @@ import { WriteOutJsonInterceptor } from './shared/write-out-json-interceptor';
 export class AppModule {
   constructor() {
     // automapper mappings
+    // mapping for creating (post) tour when not admin (no access to manager field)
+    // using the vendor media types established on API
+    // we ignore the formgroup band and manager fields, and add a bandid field, which
+    // we map to band
+    automapper
+      .createMap('TourFormModel', 'TourForHttpPost')
+      .forSourceMember(
+        'band',
+        (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => {
+          opts.ignore();
+        }
+      )
+      .forSourceMember(
+        'manager',
+        (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => {
+          opts.ignore();
+        }
+      )
+      .forMember('bandid', opts => {
+        opts.mapFrom('band');
+      });
+
+    // mapping for creating (post) tour when admin (access to manager field)
+    // using the vendor media types established on API
+    // we ignore the formgroup band and manager fields, and add a bandid
+    // and managerid fields, which we map to band and manager in formgroup
+    automapper
+      .createMap('TourFormModel', 'TourWithManagerForHttpPost')
+      .forSourceMember(
+        'band',
+        (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => {
+          opts.ignore();
+        }
+      )
+      .forSourceMember(
+        'manager',
+        (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => {
+          opts.ignore();
+        }
+      )
+      .forMember('bandid', opts => {
+        opts.mapFrom('band');
+      })
+      .forMember('managerid', opts => {
+        opts.mapFrom('manager');
+      });
   }
 }

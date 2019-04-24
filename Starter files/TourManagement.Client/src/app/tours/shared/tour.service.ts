@@ -8,6 +8,8 @@ import 'rxjs/add/operator/do';
 import { Tour } from './tour.model';
 import { BaseService } from '../../shared/base.service';
 import { TourWithProfits } from './tour-with-profits.model';
+import { TourForHttpPost } from './tour-for-http-post.model';
+import { TourWithManagerForHttpPost } from './tour-with-manager-for-http-post.model';
 
 @Injectable()
 export class TourService extends BaseService {
@@ -29,6 +31,22 @@ export class TourService extends BaseService {
   getTourWithProfits(tourId: string): Observable<TourWithProfits> {
     return this.http.get<TourWithProfits>(`${this.apiUrl}/tours/${tourId}`, {
       headers: { Accept: 'application/vnd.isidore.tourWithProfits+json' }
+    });
+  }
+  // the observable is of type Tour, we want to serialize a generic tour when storing
+  // into DB
+  postTour(tourToAdd: TourForHttpPost): Observable<Tour> {
+    return this.http.post<Tour>(`${this.apiUrl}/tours`, tourToAdd, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  postTourWithManager(tourToAdd: TourWithManagerForHttpPost): Observable<Tour> {
+    return this.http.post<Tour>(`${this.apiUrl}/tours`, tourToAdd, {
+      headers: {
+        'Content-Type':
+          'application/vnd.isidore.tourWithManagerForHttpPost+json'
+      }
     });
   }
 }
