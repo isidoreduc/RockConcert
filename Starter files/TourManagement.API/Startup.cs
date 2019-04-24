@@ -35,6 +35,14 @@ namespace TourManagement.API
                     jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tour+json");
                     jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tourWithProfits+json");
                 }
+
+                // using a json input formatter to add vendor media types
+                var jsonInputFormatter = setupAction.OutputFormatters.OfType<JsonInputFormatter>().FirstOrDefault();
+                if (jsonInputFormatter != null)
+                {
+                    jsonInputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tourForHttpPost+json");
+                    jsonInputFormatter.SupportedMediaTypes.Add("application/vnd.isidore.tourWithManagerForHttpPost+json");
+                }
             })
             .AddJsonOptions(options =>
             {
@@ -91,13 +99,19 @@ namespace TourManagement.API
             {
                 config.CreateMap<Entities.Tour, Dtos.Tour>()
                     .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
-                // mapping for different media types (vendor media types)
+                // mapping for different media types (vendor media types) - output
                 config.CreateMap<Entities.Tour, Dtos.TourWithProfits>()
                     .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
 
                 config.CreateMap<Entities.Band, Dtos.Band>();
                 config.CreateMap<Entities.Manager, Dtos.Manager>();
-                config.CreateMap<Entities.Show, Dtos.Show>(); 
+                config.CreateMap<Entities.Show, Dtos.Show>();
+
+                // mapping for different media types (vendor media types) - input
+                config.CreateMap<Dtos.TourForHttpPost, Entities.Tour>();
+                config.CreateMap<Dtos.TourWithManagerForHttpPost, Entities.Tour>();
+
+
             });
 
             // Enable CORS

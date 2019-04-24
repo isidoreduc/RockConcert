@@ -16,6 +16,7 @@ export class TourDetailComponent implements OnInit, OnDestroy {
   private tour: any;
   private tourId: string;
   private sub: Subscription;
+  private isAdmin = false;
 
   constructor(
     private masterDataService: MasterDataService,
@@ -28,9 +29,16 @@ export class TourDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.tourId = params['tourId'];
 
-      this.tourService.getTour(this.tourId).subscribe(tour => {
-        this.tour = tour;
-      });
+      // accessing different resources based on role
+      if (this.isAdmin === true) {
+        this.tourService.getTourWithProfits(this.tourId).subscribe(tour => {
+          this.tour = tour;
+        });
+      } else {
+        this.tourService.getTour(this.tourId).subscribe(tour => {
+          this.tour = tour;
+        });
+      }
     });
   }
 

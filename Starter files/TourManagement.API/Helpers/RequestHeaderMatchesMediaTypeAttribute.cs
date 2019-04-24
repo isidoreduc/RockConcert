@@ -23,7 +23,7 @@ namespace TourManagement.API.Helpers
 
         // order decides which stage the constraint runs in; action constraints run in group based on the order; 
         // HTTP method attributes all use the same value, so they can run in the same stage => order value is 0. 
-        public int Order => 0;
+        public int Order { get { return 0; } }
 
         public bool Accept(ActionConstraintContext context)
         {

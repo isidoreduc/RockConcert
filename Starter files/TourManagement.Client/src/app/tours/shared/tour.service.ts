@@ -20,10 +20,15 @@ export class TourService extends BaseService {
   }
 
   getTour(tourId: string): Observable<Tour> {
-    return this.http.get<Tour>(`${this.apiUrl}/tours/${tourId}`);
+    return this.http.get<Tour>(`${this.apiUrl}/tours/${tourId}`, {
+      headers: { Accept: 'application/vnd.isidore.tour+json' }
+    });
   }
 
+  // accessing the resource via custom media type
   getTourWithProfits(tourId: string): Observable<TourWithProfits> {
-    return this.http.get<TourWithProfits>(`${this.apiUrl}/tours/${tourId}`);
+    return this.http.get<TourWithProfits>(`${this.apiUrl}/tours/${tourId}`, {
+      headers: { Accept: 'application/vnd.isidore.tourWithProfits+json' }
+    });
   }
 }
